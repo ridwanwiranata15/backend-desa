@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Aparatur extends Model
@@ -16,4 +17,10 @@ class Aparatur extends Model
         'role',
         'image',
     ];
+
+    protected function image(){
+        return Attribute::make(
+            get:  fn ($image) => url('/storage/aparaturs/' . $image)
+        );
+    }
 }

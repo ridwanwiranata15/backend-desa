@@ -3,11 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject; // <-- import JWTSubject
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements JWTSubject // <-- tambahkan ini
 {
@@ -80,4 +83,15 @@ class User extends Authenticatable implements JWTSubject // <-- tambahkan ini
     {
         return [];
     }
+     public function posts(){
+        return $this->hasMany(Post::class);
+    }
+     public function products(){
+        return $this->hasMany(Product::class);
+    }
+     public function pages(){
+        return $this->hasMany(Page::class);
+    }
+
+
 }
